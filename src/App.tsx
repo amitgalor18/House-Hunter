@@ -19,18 +19,23 @@ interface Category {
 // You can continue using your categories array
 const categories: Category[] = [
   { id: 'location', name: 'מיקום', weight: 1 },
+  { id: 'size', name: 'גודל דירה', weight: 1 },
   { id: 'building', name: 'בניין', weight: 1 },
   { id: 'floor', name: 'קומה', weight: 1 },
   { id: 'view', name: 'נוף', weight: 1 },
   { id: 'proximity', name: 'קרבה למוסדות חינוך מסחר ותרבות', weight: 1 },
   { id: 'rooms', name: 'מספר חדרים', weight: 1 },
   { id: 'roomSize', name: 'גודל חדרים', weight: 1 },
+  { id: 'kitchen', name: 'מטבח', weight: 1 },
   { id: 'livingSpace', name: 'גודל מרחב אירוח ואוכל', weight: 1 },
   { id: 'masterBedroom', name: 'יחידת הורים', weight: 1 },
   { id: 'elevator', name: 'מעלית', weight: 1 },
   { id: 'neighborhood', name: 'שכונה', weight: 1 },
   { id: 'buildingAge', name: 'גיל הבניין', weight: 1 },
-  { id: 'bathrooms', name: 'מספר שירותים/מקלחות', weight: 1 },
+  { id: 'bathrooms', name: 'מספר חדרי שירותים', weight: 1 },
+  { id: 'bathroomSize', name: 'גודל חדרי שירותים', weight: 1 },
+  { id: 'shower', name: 'מספר מקלחות', weight: 1 },
+  { id: 'showerSize', name: 'גודל מקלחות', weight: 1 },
   { id: 'neighbors', name: 'שכנים', weight: 1 },
   { id: 'parking', name: 'חניה', weight: 1 },
   { id: 'shelter', name: 'ממ״ד', weight: 1 },
@@ -187,7 +192,7 @@ function App() {
       <div className="container mx-auto p-4">
         {/* ======= Header with Logo and Subtitle ======= */}
         <header className="mb-8 text-center">
-          <img src="/House-Hunter/logo.jpeg" alt="House Hunters Logo" className="mx-auto h-16 sm:h-16 md:h-32 lg:h-52" />
+          <img src="/House-Hunter/logo.png" alt="House Hunters Logo" className="mx-auto h-16 sm:h-16 md:h-32 lg:h-52" />
           <p className="text-md text-gray-600 mt-2">
             המפתח לבית – כלי לבחירת הבית המתאים ביותר
           </p>
@@ -315,7 +320,7 @@ function App() {
                 />
               </div>
               
-              {categories.map(category => (
+              {categories.filter(category => weights[category.id] > 0).map(category => (
                 <div key={category.id} className="space-y-2">
                   <label className="block text-sm font-medium">{category.name}</label>
                   <div className="flex justify-between gap-2">
